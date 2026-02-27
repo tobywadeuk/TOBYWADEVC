@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tobias Wade</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A quiet thought partner for investors who want sharper decisions with less noise." />
+    <meta property="og:title" content="Tobias Wade" />
+    <meta property="og:description" content="Sharper decisions. Less noise." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%2210 0 100 100%22><text y=%22.90em%22 font-size=%2290%22>💡</text></svg>">
+    <style>
+      :root {
+        --ink: #111;
+        --paper: #f7f6f3;
+        --muted: #6b6b6b;
+        --rule: #ddd;
+        --accent: #8b6f47;
+      }
+      *, *::before, *::after { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); }
+      body { font-family: Georgia, "Times New Roman", serif; line-height: 1.6; font-size: 16px; }
+      .wrap { max-width: 720px; margin: 0 auto; padding: 9vh 20px 8vh; }
+      .header { opacity: 0; animation: fadeUp 0.9s ease forwards; }
+      h1 { font-weight: 400; font-size: 36px; letter-spacing: 0.5px; text-transform: uppercase; margin: 0 0 6px; }
+      .sub { color: var(--muted); font-size: 16px; margin: 0; }
+      .rule { display: flex; align-items: center; gap: 14px; margin: 28px 0; opacity: 0; animation: fadeUp 0.9s ease 0.1s forwards; }
+      .rule::before, .rule::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+      .rule-mark { width: 4px; height: 4px; border: 1px solid var(--accent); transform: rotate(45deg); flex-shrink: 0; }
+      .body-copy { opacity: 0; animation: fadeUp 0.9s ease 0.2s forwards; }
+      .video-wrap { margin: 28px auto; max-width: 380px; opacity: 0; animation: fadeUp 0.9s ease 0.3s forwards; }
+      .video-frame { position: relative; width: 100%; background: #000; overflow: hidden; border-radius: 32px; }
+      .video-frame video { display: block; width: 103%; margin-left: -3%; height: auto; outline: none; }
+      .progress-bar-wrap { max-width: 380px; margin: 10px auto 0; cursor: pointer; }
+      .progress-track { height: 3px; background: var(--rule); border-radius: 2px; }
+      .progress-fill { height: 100%; width: 0%; background: var(--accent); border-radius: 2px; transition: width 0.1s linear; pointer-events: none; }
+      .whatsapp-link { display: block; text-align: center; margin: 12px auto 0; max-width: 380px; font-size: 13px; color: var(--muted); text-decoration: none; font-family: Georgia, "Times New Roman", serif; }
+      .whatsapp-link:hover { color: var(--ink); }
+      .testimonial { margin: 28px 0; padding: 0 0 0 20px; border-left: 1px solid var(--accent); opacity: 0; animation: fadeUp 0.9s ease 0.4s forwards; }
+      .testimonial blockquote { margin: 0 0 10px; font-style: italic; color: #333; line-height: 1.6; }
+      .testimonial cite { font-style: normal; font-size: 13px; color: var(--muted); }
+      footer { margin-top: 48px; color: var(--muted); font-size: 13px; opacity: 0; animation: fadeUp 0.9s ease 0.55s forwards; }
+      @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+      @media (max-width: 520px) { h1 { font-size: 28px; } }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="header">
+        <h1>Tobias Wade</h1>
+      </header>
+      <div class="rule"><div class="rule-mark"></div></div>
+      <div class="body-copy">
+        I work with investors and founders who want a clean space to think through high-stakes decisions. A private space that surfaces the internal blindspots, contradictions, and biases you can't see yourself, and removes the external noise of other people's opinions — so your best thinking and zone of genius can surface on the decisions that matter most.
+      </div>
+      <div class="video-wrap">
+        <div class="video-frame">
+          <video id="mainVideo" controls preload="metadata">
+            <source src="/Users/toby/Documents/Odin Project/TOBYWADEVC/0226(2).mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="progress-bar-wrap" id="progressWrap">
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+      <a class="whatsapp-link" href="https://api.whatsapp.com/send?phone=447826593930" target="_blank" rel="noopener">+447826593930</a>
+      <div class="testimonial">
+        <blockquote>"I nearly passed on a deal because of someone else's fear. I'd been going back and forth for two weeks, had my call with Tobias and what was actually going on internally for me became clear. I ended up writing the check and I'm glad I did."</blockquote>
+        <cite>— James K, Angel investor</cite>
+      </div>
+      <footer>By referral or invitation. Discretion. Typically retainers; exclusivity on request.</footer>
+    </div>
+    <script>
+      const video = document.getElementById('mainVideo');
+      const fill = document.getElementById('progressFill');
+      const track = document.getElementById('progressWrap');
+
+      video.addEventListener('timeupdate', () => {
+        if (video.duration) {
+          fill.style.width = (video.currentTime / video.duration * 100) + '%';
+        }
+      });
+
+      track.addEventListener('click', (e) => {
+        const rect = track.getBoundingClientRect();
+        const pct = (e.clientX - rect.left) / rect.width;
+        if (video.duration) video.currentTime = pct * video.duration;
+      });
+    </script>
+  </body>
+</html>
